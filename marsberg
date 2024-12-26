@@ -188,8 +188,13 @@ local function toggleBoxPlayer(state)
         running = true
         spawn(function()
             while running do
-                boxPlayer(detectionRange)
-                wait()
+                local success, errorMessage = pcall(function()
+                    boxPlayer(detectionRange)
+                end)
+                if not success then
+                    warn("Error in boxPlayer: " .. errorMessage)
+                end
+                wait() -- Avoid spamming; add delay between executions
             end
         end)
     else
@@ -197,6 +202,9 @@ local function toggleBoxPlayer(state)
         MarsBerg:set_status("Box Aura disabled.")
     end
 end
+
+
+
 
 local function TpAura(state)
     if state then
