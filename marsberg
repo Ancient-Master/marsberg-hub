@@ -14,7 +14,7 @@ local whitelistedTeams = {}
 local teamNames = {}
 local running = false
 local visualize = false
-local detectionRange = 22
+local detectionRange = 12
 
 LocalPlayer.CharacterAdded:Connect(function()
     Backpack = LocalPlayer:WaitForChild("Backpack")
@@ -249,7 +249,7 @@ Asylum_Life:Toggle{
 Asylum_Life:Slider{
     Name = "Detection Range",
     Min = 0,
-    Max = 22,
+    Max = 14,
     Default = detectionRange,
     Callback = function(value)
         detectionRange = value
