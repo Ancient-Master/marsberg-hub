@@ -1,5 +1,5 @@
 
-    repeat wait() until game:IsLoaded()
+repeat wait() until game:IsLoaded()
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -8,6 +8,7 @@ local Teams = game:GetService("Teams")
 local TeleportService = game:GetService("TeleportService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local Namespaces = require(ReplicatedStorage.Service.Namespaces)
 
 local whitelistedPlayers = {}
 local whitelistedTeams = {}
@@ -110,7 +111,7 @@ local function useBestWeaponOnNearestPlayer(range)
                     nearestPlayer.Character.Torso,
                     Backpack:FindFirstChild(bestWeapon) or LocalPlayer.Character:FindFirstChild(bestWeapon)
                 }
-                ReplicatedStorage:WaitForChild("Remote"):WaitForChild("MeleeHit"):InvokeServer(unpack(args))
+                Namespaces.MeleeReplication.sendHit.send(args)
             end)()
                 end
                 if table.find({"Electrostaff", "Riot Control","Glass Fragment","Wooden Bat",}, bestWeapon) then
@@ -125,7 +126,7 @@ local function useBestWeaponOnNearestPlayer(range)
                                         player.Character.Torso,
                                         Backpack:FindFirstChild(bestWeapon) or LocalPlayer.Character:FindFirstChild(bestWeapon)
                                     }
-                                    ReplicatedStorage:WaitForChild("Remote"):WaitForChild("MeleeHit"):InvokeServer(unpack(args))
+                                    Namespaces.MeleeReplication.sendHit.send(args)
                                 end
                             end
                         end
