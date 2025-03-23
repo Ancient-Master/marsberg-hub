@@ -111,7 +111,7 @@ local function useBestWeaponOnNearestPlayer(range)
                     nearestPlayer.Character.Torso,
                     Backpack:FindFirstChild(bestWeapon) or LocalPlayer.Character:FindFirstChild(bestWeapon)
                 }
-                Namespaces.MeleeReplication.sendHit.send(args)
+                Namespaces.MeleeReplication.packets.sendHit.send(args)
             end)()
                 end
                 if table.find({"Electrostaff", "Riot Control","Glass Fragment","Wooden Bat",}, bestWeapon) then
@@ -126,7 +126,7 @@ local function useBestWeaponOnNearestPlayer(range)
                                         player.Character.Torso,
                                         Backpack:FindFirstChild(bestWeapon) or LocalPlayer.Character:FindFirstChild(bestWeapon)
                                     }
-                                    Namespaces.MeleeReplication.sendHit.send(args)
+                                    Namespaces.MeleeReplication.packets.sendHit.send(args)
                                 end
                             end
                         end
